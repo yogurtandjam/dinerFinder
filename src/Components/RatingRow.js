@@ -1,11 +1,11 @@
 import React from 'react';
 import Stars from './Stars';
 import styled from 'styled-components';
-import { Row } from './Styles/Styles'
+import { FilterRow } from './Styles/Styles'
 
-const StarRow = Row.extend`
-display: flex;
-flex-direction: row;
+const StarRow = FilterRow.extend`
+  display: flex;
+  flex-direction: row;
 `
 
 const RatingRow = props => {

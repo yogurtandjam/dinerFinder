@@ -9,7 +9,7 @@ const PaymentOptions = props => {
   return (
     <FilterContainer>
       <h3>Payment Options</h3>
-      {['American Express', 'Visa', 'Discover', 'MasterCard'].map((card, i) => <PaymentOption card={card} key={i}/>)}
+      {['AMEX', 'Visa', 'Discover', 'MasterCard'].map((card, i) => <PaymentOption card={card} key={i} refineSearch={props.refineSearch}/>)}
     </FilterContainer>
   )
 }

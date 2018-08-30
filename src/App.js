@@ -16,6 +16,7 @@ const Container = styled.div`
   box-shadow: 0 6px 18px 1px rgba(0,0,0,.2);
   display:flex;
   flex-direction:column
+  font-family: helvetica;
 `
 
 const Body = styled.div`
@@ -38,7 +39,7 @@ class App extends Component {
     }
     this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
     this.helper = algoliasearchHelper(this.client, 'Algolia', {
-      facets: ['food_type']
+      facets: ['food_type', 'payment_options']
     });
     this.helper.on('result', content => this.renderHits(content));
     this.end = 0;
@@ -49,6 +50,8 @@ class App extends Component {
     this.refineSearch = this.refineSearch.bind(this);
     this.nextPage = this.nextPage.bind(this);
     this.startOver = this.startOver.bind(this);
+    this.makeReservation = this.makeReservation.bind(this);
+    this.toggleBackground = this.toggleBackground.bind(this);
   }
 
   componentDidMount() {
@@ -84,8 +87,8 @@ class App extends Component {
     this.end = window.performance.now();
   }
 
-  refineSearch(facetValue) {
-    this.helper.toggleFacetRefinement('food_type', facetValue)
+  refineSearch(facet, facetValue) {
+    this.helper.toggleFacetRefinement(facet, facetValue)
       .search();
   }
 
@@ -96,6 +99,14 @@ class App extends Component {
 
   startOver() {
     this.helper.setPage(0).search();
+  }
+
+  makeReservation(restaurant) {
+    window.open(restaurant, 'mywindow')
+  }
+
+  toggleBackground(e) {
+    console.log(e.target)
   }
   
 
@@ -119,6 +130,7 @@ class App extends Component {
               pageNumber={this.state.pageNumber}
               maxPages={this.state.maxPages}
               startOver={this.startOver}
+              makeReservation={this.makeReservation}
               searchValue={this.state.searchValue}/>
           </Body>
       </Container>

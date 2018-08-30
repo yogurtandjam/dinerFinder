@@ -6,6 +6,7 @@ import fullStar from '../resources/graphics/stars-plain.png';
 
 // background: url(${emptyStar});
 const StarContainer = styled.div`
+  background-color: transparent;
   width: 15px;
   height: 15px;
   margin-bottom: 7px;

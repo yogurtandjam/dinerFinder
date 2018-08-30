@@ -13,6 +13,7 @@ const ResultContainer = Row.extend`
   display: flex;
   flex-direction: row;
   padding: 20px;
+  cursor: pointer;
 `
 
 const RestaurantInfo = Row.extend`
@@ -40,12 +41,12 @@ const Name = styled.h3`
 
 const Result = props => {
   return (
-    <ResultContainer>
+    <ResultContainer onClick={e => props.makeReservation(props.restaurant['reserve_url'])}>
       <div>
       <Thumbnail src={props.restaurant.image_url}/>
       </div>
       <RestaurantInfo>
-        <Name>{props.restaurant.name}</Name>
+        <Name >{props.restaurant.name}</Name>
         <Reviews>
           <Rating>{props.restaurant['stars_count']}</Rating><span>({props.restaurant['reviews_count']} Reviews)</span>
         </Reviews>

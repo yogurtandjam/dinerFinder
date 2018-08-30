@@ -1,12 +1,12 @@
 import React from 'react';
-import { Row } from './Styles/Styles'
+import { FilterRow, Text } from './Styles/Styles'
 
 
 const PaymentOption = props => {
   return (
-    <Row>
-      {props.card}
-    </Row>
+    <FilterRow onClick={e => props.refineSearch('payment_options', props.card)}>
+      <Text>{props.card === 'AMEX' ? 'American Express' : props.card}</Text>
+    </FilterRow>
   )
 }
 

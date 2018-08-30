@@ -11,7 +11,15 @@ const ResultsContainer = styled.div`
 `
 
 const Timer = styled.div`
+  display: flex;
+  flex-direction: row;
   text-align: left;
+`
+
+const Line = styled.div`
+  margin: 20px;
+  width: 50%;
+  border-bottom: solid #E3E3E3 1px;
 `
 
 const Next = styled.button`
@@ -32,8 +40,9 @@ const Results = props => {
       <ResultsContainer>
         <Timer>
           {props.restaurantCount} results found in {props.queryTime} seconds
+          <Line/>
         </Timer>
-        {props.restaurants.map((restaurant, i) => <Result key={i} restaurant={restaurant}/>)}
+        {props.restaurants.map((restaurant, i) => <Result key={i} restaurant={restaurant} makeReservation={props.makeReservation}/>)}
         {props.pageNumber === (props.maxPages - 1) ? <Next onClick={props.startOver}>Start Over</Next> : <Next onClick={props.nextPage}>Show More</Next>}
       </ResultsContainer>
     )
