@@ -51,13 +51,11 @@ const Result = props => {
   const starRow = [];
   let starCount = props.restaurant['stars_count'];
   for (let i = 0; i < 5; i++) {
-    console.log(starCount)
     let isOn = starCount -= 1;
-    if (isOn === 1 || isOn <= 0) starRow.push(false)
-    else if (isOn > 1) starRow.push(true)
-    else if (isOn > 0 ) starRow.push('half')
+    if (isOn === 0 || isOn <= -1) starRow.push(false)
+    else if (isOn > 0) starRow.push(true)
+    else if (isOn > -1) starRow.push('half')
   }
-  console.log(starRow)
   return (
     <ResultContainer>
       <div>

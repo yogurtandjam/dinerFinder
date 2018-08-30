@@ -17,7 +17,7 @@ const FilterRow = Row.extend`
     background-color:#2FA0D1 !important;
     border-radius: 3px;
     cursor: pointer;
-    color: white;
+    color: white !important;
   }
 `
 const Text = styled.p`

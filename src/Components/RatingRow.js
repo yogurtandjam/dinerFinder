@@ -10,7 +10,7 @@ const StarRow = FilterRow.extend`
 
 const RatingRow = props => {
   return (
-    <StarRow>
+    <StarRow onClick={(e)=>props.refineSearch('stars_count', props.starCount + '.0')}>
       {props.stars.map((star, i) => <Stars key={i} on={star}/>)}
     </StarRow>
   )

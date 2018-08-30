@@ -38,10 +38,10 @@ class App extends Component {
       maxPages: 0,
       firstSearch: true
     }
-    
-    this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
+    this.client =  algoliasearch('UDMP9G16OH','4cea8dbb3c71108707028c780f4063f1');
+    // this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
     this.helper = algoliasearchHelper(this.client, 'Algolia', {
-      facets: ['food_type', 'payment_options']
+      facets: ['food_type', 'payment_options', 'stars_count']
     });
     this.usersIp = '';
     this.helper.on('result', content => this.renderHits(content));

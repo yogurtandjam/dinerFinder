@@ -17,7 +17,7 @@ const Filter = props => {
   return (
     <FilterContainer>
       <CuisineType refineSearch={props.refineSearch} foodTypes={props.foodTypes}/>
-      <Rating/>
+      <Rating refineSearch={props.refineSearch}/>
       <PaymentOptions refineSearch={props.refineSearch} toggleBackground={props.toggleBackground}/>
     </FilterContainer>
   )

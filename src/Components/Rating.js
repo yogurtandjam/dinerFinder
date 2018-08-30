@@ -14,9 +14,9 @@ const starMap = [
 
 const Rating = props => {
   return (
-    <FilterContainer>
+    <FilterContainer >
       <h3>Rating</h3>
-        {starMap.map((stars, i) => <RatingRow key={i} stars={stars}/>)}
+        {starMap.map((stars, i) => <RatingRow key={i} stars={stars} starCount={i} refineSearch={props.refineSearch}/>)}
     </FilterContainer>
   )
 }
