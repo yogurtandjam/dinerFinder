@@ -9,7 +9,6 @@ const StarContainer = styled.div`
   background-color: transparent;
   width: 15px;
   height: 15px;
-  margin-bottom: 7px;
 `
 
 const OnStar = styled.img.attrs({

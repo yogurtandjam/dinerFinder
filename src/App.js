@@ -5,6 +5,7 @@ import Filter from './Components/Filter';
 import Results from './Components/Results';
 import algoliasearch from 'algoliasearch';
 import algoliasearchHelper from 'algoliasearch-helper';
+import $ from 'jquery';
 
 
 const Container = styled.div`
@@ -24,7 +25,6 @@ const Body = styled.div`
   flex-direction:row;
   height:550px;
 `
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -37,10 +37,12 @@ class App extends Component {
       pageNumber: 0,
       maxPages: 0
     }
+    
     this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
     this.helper = algoliasearchHelper(this.client, 'Algolia', {
       facets: ['food_type', 'payment_options']
     });
+    this.usersIp = '';
     this.helper.on('result', content => this.renderHits(content));
     this.end = 0;
     this.start = 0;
@@ -52,9 +54,27 @@ class App extends Component {
     this.startOver = this.startOver.bind(this);
     this.makeReservation = this.makeReservation.bind(this);
     this.toggleBackground = this.toggleBackground.bind(this);
+    this.searchByLocation = this.searchByLocation.bind(this);
+    this.setUserIp = this.setUserIp.bind(this);
   }
 
   componentDidMount() {
+    this.setUserIp();
+  }
+
+  setUserIp() {
+    this.getUserIp((data, err) => {
+      if (err) console.log(err)
+      else this.usersIp = data;
+    });
+    this.client.setExtraHeader('X-Forwarded-For', this.usersIp);
+  }
+
+  getUserIp(callback) {
+    $.getJSON("http://ipinfo.io", function(data, err){
+      if (err) callback(err, null)
+      callback(null, data.ip)
+    });
   }
 
 
@@ -72,7 +92,15 @@ class App extends Component {
       pageNumber: pageNumber,
       restaurantCount: restaurantCount,
       maxPages: maxPages
-    }, console.log(content))
+    })
+  }
+
+  searchByLocation(query) {
+    console.log(this.helper)
+    this.helper.search({
+      query: query,
+      aroundLatLngViaIP: true
+    })
   }
 
   handleChange(e) {
@@ -83,7 +111,8 @@ class App extends Component {
   executeSearch(query) {
     this.start = window.performance.now();
     this.helper.setQuery(query)
-      .search();
+      .setQueryParameter('aroundLatLngViaIP', true)
+      .search()
     this.end = window.performance.now();
   }
 
@@ -106,7 +135,14 @@ class App extends Component {
   }
 
   toggleBackground(e) {
-    console.log(e.target)
+    let el = e.target.style;
+    if (el.backgroundColor === 'rgb(47, 160, 209)') {
+      el.backgroundColor = 'white';
+      el.color = 'black';
+    } else {
+      el.backgroundColor = '#2FA0D1';
+      el.color = 'white';
+    }
   }
   
 
@@ -121,7 +157,8 @@ class App extends Component {
           <Body>
             <Filter
               refineSearch={this.refineSearch}
-              foodTypes={this.state.foodTypes}/>
+              foodTypes={this.state.foodTypes}
+              toggleBackground={this.toggleBackground}/>
             <Results
               restaurantCount={this.state.restaurantCount}
               restaurants={this.state.searchResults}

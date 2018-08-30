@@ -14,7 +14,7 @@ const FilterRow = Row.extend`
   flex-direction: row;
   margin-left: 20px;
   :hover{
-    background-color:#2FA0D1;
+    background-color:#2FA0D1 !important;
     border-radius: 3px;
     cursor: pointer;
     color: white;

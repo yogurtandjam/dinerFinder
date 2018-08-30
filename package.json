@@ -5,6 +5,7 @@
   "dependencies": {
     "algoliasearch": "^3.30.0",
     "algoliasearch-helper": "^2.26.1",
+    "jquery": "^3.3.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
@@ -15,5 +16,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "lodash.chunk": "^4.2.0"
   }
 }
