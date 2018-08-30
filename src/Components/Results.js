@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Result from './Result';
+import fullStar from '../resources/graphics/stars-plain.png';
+import { StarContainer } from './Styles/Styles';
 
 const ResultsContainer = styled.div`
   display:flex;
@@ -32,7 +34,9 @@ const Next = styled.button`
   border:solid #E3E3E3 1px;
   border-radius: 3px;
   cursor: pointer;
-`
+  font-size: 15px;
+  color: gray;
+  `
 
 const Results = props => {
   if (props.restaurants.length > 0) {
@@ -49,7 +53,7 @@ const Results = props => {
   } else {
     return (
       <ResultsContainer>
-        {props.searchValue.length === 0 ? 'Start your Search!' : 'Sorry, no results were found for your query!'}
+        {props.firstSearch ? 'Start your Search!' : 'Sorry, no results were found for your query!'}
       </ResultsContainer>
     )
   }

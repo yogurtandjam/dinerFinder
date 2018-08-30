@@ -1,13 +1,13 @@
 import styled from 'styled-components';
+import emptyStar from '../../resources/graphics/star-empty.png';
+import fullStar from '../../resources/graphics/stars-plain.png';
 
 const FilterContainer = styled.div`
   text-align:left;
 `
-
 const Row = styled.div`
   margin-left: 20px;
 `
-
 const FilterRow = Row.extend`
   padding: 3px;
   display: flex;
@@ -29,5 +29,5 @@ export {
   FilterContainer,
   FilterRow,
   Row,
-  Text
+  Text,
 }

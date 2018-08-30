@@ -3,9 +3,6 @@ import { FilterRow } from './Styles/Styles';
 import styled from 'styled-components';
 
 const CuisineRow = FilterRow.extend`
-  padding: 3px;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 `
 

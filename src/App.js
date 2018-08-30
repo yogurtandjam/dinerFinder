@@ -35,7 +35,8 @@ class App extends Component {
       queryTime: 0,
       restaurantCount: 0,
       pageNumber: 0,
-      maxPages: 0
+      maxPages: 0,
+      firstSearch: true
     }
     
     this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
@@ -54,7 +55,6 @@ class App extends Component {
     this.startOver = this.startOver.bind(this);
     this.makeReservation = this.makeReservation.bind(this);
     this.toggleBackground = this.toggleBackground.bind(this);
-    this.searchByLocation = this.searchByLocation.bind(this);
     this.setUserIp = this.setUserIp.bind(this);
   }
 
@@ -91,17 +91,12 @@ class App extends Component {
       queryTime: time,
       pageNumber: pageNumber,
       restaurantCount: restaurantCount,
-      maxPages: maxPages
+      maxPages: maxPages,
+      firstSearch: false
     })
   }
 
-  searchByLocation(query) {
-    console.log(this.helper)
-    this.helper.search({
-      query: query,
-      aroundLatLngViaIP: true
-    })
-  }
+
 
   handleChange(e) {
     this.setState({ searchValue: e.target.value});
@@ -122,8 +117,7 @@ class App extends Component {
   }
 
   nextPage() {
-    const next = this.helper.getCurrentPage() + 1;
-    this.helper.setPage(next).search();
+    this.helper.nextPage().search();
   }
 
   startOver() {
@@ -168,7 +162,7 @@ class App extends Component {
               maxPages={this.state.maxPages}
               startOver={this.startOver}
               makeReservation={this.makeReservation}
-              searchValue={this.state.searchValue}/>
+              firstSearch={this.state.firstSearch}/>
           </Body>
       </Container>
     );
