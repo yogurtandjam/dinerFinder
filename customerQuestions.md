@@ -37,15 +37,16 @@ client.listIndexes(callback) <-- this will return a list of all your indexes, wh
 client.deleteIndex(indexName, callback) or
 index.clearIndex(callback)
 
-an example script might look something like this:
-const deleteLargeIndexes = () => {
-  client.listIndexes((err, data) => {
-     let allIndexes = data;
-     allIndexes.forEach(index => {
-       if (index.dataSize > 1000000) client.deleteIndex(index.name, data)
-       })
-  })
-}
+you can also delete records by filter by using index.deleteBy, here is an example:
+index.deleteBy({
+    filters: 'year < 2017'
+  },
+  function(err) {
+    if (!err) {
+      console.log('success');
+    }
+  }
+);
 
 ########################################################################################################################################
 
