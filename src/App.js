@@ -78,7 +78,7 @@ class App extends Component {
   }
 
   getUserIp(callback) {
-    $.getJSON("http://ipinfo.io", function(data, err){
+    $.getJSON("https://ipinfo.io", function(data, err){
       if (err) callback(err, null)
       callback(null, data.ip)
     });
