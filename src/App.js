@@ -147,14 +147,16 @@ class App extends Component {
   }
 
   highlightStars(index) {
-    let stars = [];
-    for (var i = 0; i < 5; i++) {
-      i <= index ? stars.push(1) : stars.push(0);
+    if (!this.state.starFilterOn) {
+      let stars = [];
+      for (var i = 0; i < 5; i++) {
+        i <= index ? stars.push(1) : stars.push(0);
+      }
+      this.setState({ 
+        highLightedStars: stars,
+        highLightedStarCount: index
+      });
     }
-    this.setState({ 
-      highLightedStars: stars,
-      highLightedStarCount: index
-    });
   }
 
   dimStars() {
