@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   setUserIp() {
-    this.getUserIp((data, err) => {
+    this.getUserIp((err, data) => {
       if (err) console.log(err)
       else this.usersIp = data;
     });
@@ -120,6 +120,7 @@ class App extends Component {
 
   refineSearch(facet, facetValue) {
     this.helper.toggleFacetRefinement(facet, facetValue)
+      .setQueryParameter('aroundLatLngViaIP', true)
       .search();
   }
 
@@ -181,6 +182,7 @@ class App extends Component {
   filterByStars(starCount) {
     this.helper.removeNumericRefinement('stars_count')
       .addNumericRefinement('stars_count', '>=', starCount + 1)
+      .setQueryParameter('aroundLatLngViaIP', true)
       .search();
   }
   
