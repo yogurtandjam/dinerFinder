@@ -14,7 +14,7 @@ Happy to answer that for you George,
 
 A record is simply an item that is stored in our online database, called an Index. Think of it as a physical file in a file cabinet.
 
-Since our database is called an Index, it can be thought of as our file cabinet. Indexing a record is just like putting in a file into the cabinet: we are simply inserting items into a storage.x
+Since our database (or perhaps table, if you want to represent a SQL database) is called an Index, it can be thought of as our file cabinet. Indexing a record is just like putting in a file into the cabinet: we are simply inserting items into a storage.
 
 ########################################################################################################################################
 
@@ -30,9 +30,9 @@ Matt,
 
 Sorry to hear that, we try to give each and every customer a high level of satisfaction. Fortunately for you, I think I have some answers.
 
-If the problem is that Clearing and Deleting indexes are several clicks away from eachother: Clearing/Deleting indexes can be easily accessed through the Manage Current Index, where they are located right next to each other.
+If the problem is that Clearing and Deleting indexes are several clicks away from eachother: Clearing/Deleting indexes can be easily accessed through the Manage Current Index button located on your Index profile, where they are located right next to each other.
 
-If you meant that Clearing and Deleting indexes are now several clicks deeper into the website than previously: We can iterate through your indexes and delete/clear very easily using the API with 3 simple commands
+If you meant that Clearing and Deleting indexes are now several clicks deeper into the website than they were previously: We can iterate through your indexes and delete/clear very easily using the API with 3 simple commands
 client.listIndexes(callback) <-- this will return a list of all your indexes, whereupon you may either
 client.deleteIndex(indexName, callback) or
 index.clearIndex(callback)
@@ -62,7 +62,7 @@ Leo,
 I have great news for you - Algolia is an extremely easy to implement API, and I will be here at every step of the way.
 What we'll be doing over the next few days is a simple 3 step process:
 1) Index all your searchable data into an Algolia Index, either with the API or by drag and dropping a csv/json file.
-2) Decide on how you want to curate your data (filters, rankings, typo acceptance)
-3) Simply install algoliasearch (or copy/paste a CDN) and utilize any method on our API!
+2) Decide on how you want to curate your data (filters, rankings, typo acceptance, etc.)
+3) Simply install algoliasearch (or copy/paste a CDN) and utilize any method on our API! If you need any examples feel free to consult me or the documentation.
 
 With Algolia, the heavy lifting of efficiently searching through data with any amount of curation parameters is taken care of for you.

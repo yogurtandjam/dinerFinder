@@ -25,6 +25,7 @@ const Line = styled.div`
 `
 
 const Next = styled.button`
+  display:${props => props.max === 1 ? 'none' : 'visible'};
   width: 30%;
   margin-left: auto;
   margin-right: auto;
@@ -47,7 +48,7 @@ const Results = props => {
           <Line/>
         </Timer>
         {props.restaurants.map((restaurant, i) => <Result key={i} restaurant={restaurant} makeReservation={props.makeReservation}/>)}
-        {props.pageNumber === (props.maxPages - 1) ? <Next onClick={props.startOver}>Start Over</Next> : <Next onClick={props.nextPage}>Show More</Next>}
+        {props.pageNumber === (props.maxPages - 1) ? <Next onClick={props.startOver} max={props.maxPages}>Start Over</Next> : <Next onClick={props.nextPage}>Show More</Next>}
       </ResultsContainer>
     )
   } else {
