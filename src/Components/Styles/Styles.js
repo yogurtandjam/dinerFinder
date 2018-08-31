@@ -1,6 +1,4 @@
-import styled from 'styled-components';
-import emptyStar from '../../resources/graphics/star-empty.png';
-import fullStar from '../../resources/graphics/stars-plain.png';
+import styled from 'styled-components'
 
 const FilterContainer = styled.div`
   text-align:left;

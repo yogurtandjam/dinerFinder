@@ -111,8 +111,9 @@ class App extends Component {
   }
 
   executeSearch(query) {
+    const sanitizedQuery = query.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     this.start = window.performance.now();
-    this.helper.setQuery(query)
+    this.helper.setQuery(sanitizedQuery)
       .setQueryParameter('aroundLatLngViaIP', true)
       .search()
     this.end = window.performance.now();
