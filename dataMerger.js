@@ -11,7 +11,8 @@ const csvToJson = file => {
     const row = data.split(';');
     row.forEach((dataPoint, i) => {
       const currentHeader = headers[i];
-      rowToJson[currentHeader] = dataPoint;
+      if (currentHeader == 'stars_count') rowToJson[currentHeader] = Number(dataPoint)
+      else rowToJson[currentHeader] = dataPoint;
     })
     jsonData.push(rowToJson);
   })

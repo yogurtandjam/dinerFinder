@@ -14,10 +14,10 @@ const FilterRow = Row.extend`
   flex-direction: row;
   margin-left: 20px;
   :hover{
-    background-color:#2FA0D1 !important;
+    background-color:#2FA0D1;
     border-radius: 3px;
     cursor: pointer;
-    color: white !important;
+    color: white;
   }
 `
 const Text = styled.p`

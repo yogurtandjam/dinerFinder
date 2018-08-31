@@ -1,22 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import RatingRow from './RatingRow';
-import { FilterContainer } from './Styles/Styles';
+import { FilterContainer, FilterRow } from './Styles/Styles';
 
-const starMap = [
-  [0, 0, 0, 0, 0],
-  [1, 0, 0, 0, 0],
-  [1, 1, 0, 0, 0],
-  [1, 1, 1, 0, 0],
-  [1, 1, 1, 1, 0],
-  [1, 1, 1, 1, 1]
-]
+const StarRow = FilterRow.extend`
+  :hover {
+    background-color: white;
+  }
+`
 
 const Rating = props => {
   return (
     <FilterContainer >
       <h3>Rating</h3>
-        {starMap.map((stars, i) => <RatingRow key={i} stars={stars} starCount={i} refineSearch={props.refineSearch}/>)}
+        <StarRow  onMouseLeave={props.dimStars}>
+          {props.highlightedStars.map((on, i) => <RatingRow
+            key={i}
+            on={on}
+            index={i}
+            highlightStars={props.highlightStars}
+            selectStars={props.selectStars}/>)}
+        </StarRow>
     </FilterContainer>
   )
 }

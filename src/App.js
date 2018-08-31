@@ -36,10 +36,14 @@ class App extends Component {
       restaurantCount: 0,
       pageNumber: 0,
       maxPages: 0,
-      firstSearch: true
+      firstSearch: true,
+      starMap: [0,0,0,0,0],
+      highLightedStars: [0,0,0,0,0],
+      starFilterOn: false,
+      starCount: 0,
+      highLightedStarCount: 0
     }
-    this.client =  algoliasearch('UDMP9G16OH','4cea8dbb3c71108707028c780f4063f1');
-    // this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
+    this.client =  algoliasearch('UDMP9G16OH','fb09c98d7073518ff172422dd910a1dd');
     this.helper = algoliasearchHelper(this.client, 'Algolia', {
       facets: ['food_type', 'payment_options', 'stars_count']
     });
@@ -56,6 +60,9 @@ class App extends Component {
     this.makeReservation = this.makeReservation.bind(this);
     this.toggleBackground = this.toggleBackground.bind(this);
     this.setUserIp = this.setUserIp.bind(this);
+    this.highlightStars = this.highlightStars.bind(this);
+    this.dimStars = this.dimStars.bind(this);
+    this.selectStars = this.selectStars.bind(this);
   }
 
   componentDidMount() {
@@ -138,6 +145,42 @@ class App extends Component {
       el.color = 'white';
     }
   }
+
+  highlightStars(index) {
+    let stars = [];
+    for (var i = 0; i < 5; i++) {
+      i <= index ? stars.push(1) : stars.push(0);
+    }
+    this.setState({ 
+      highLightedStars: stars,
+      highLightedStarCount: index
+    });
+  }
+
+  dimStars() {
+    this.setState({ 
+      highLightedStars: this.state.starMap,
+      highLightedStarCount: this.state.starCount
+     });
+  }
+
+  selectStars() {
+    this.state.starFilterOn ? this.setState({ 
+      starMap: [0,0,0,0,0],
+      starFilterOn: false,
+      starCount: 0
+     }, this.filterByStars(0)) : this.setState({ 
+       starMap: this.state.highLightedStars,
+       starFilterOn: true,
+       starCount: this.state.highLightedStarCount
+       }, this.filterByStars(this.state.highLightedStarCount));
+  }
+
+  filterByStars(starCount) {
+    this.helper.removeNumericRefinement('stars_count')
+      .addNumericRefinement('stars_count', '>=', starCount + 1)
+      .search();
+  }
   
 
   render() {
@@ -150,6 +193,11 @@ class App extends Component {
           />
           <Body>
             <Filter
+              highlightStars={this.highlightStars}
+              highlightedStars={this.state.highLightedStars}
+              dimStars={this.dimStars}
+              selectStars={this.selectStars}
+              starMap={this.state.starMap}
               refineSearch={this.refineSearch}
               foodTypes={this.state.foodTypes}
               toggleBackground={this.toggleBackground}/>

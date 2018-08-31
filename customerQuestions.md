@@ -14,7 +14,7 @@ Happy to answer that for you George,
 
 A record is simply an item that is stored in our online database, called an Index. Think of it as a physical file in a file cabinet.
 
-Since our database is called an Index, it can be thought of as our file cabinet. Indexing a record is just like putting in a file into the cabinet: we are simply inserting items into a storage.
+Since our database is called an Index, it can be thought of as our file cabinet. Indexing a record is just like putting in a file into the cabinet: we are simply inserting items into a storage.x
 
 ########################################################################################################################################
 

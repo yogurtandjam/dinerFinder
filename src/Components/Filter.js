@@ -17,7 +17,13 @@ const Filter = props => {
   return (
     <FilterContainer>
       <CuisineType refineSearch={props.refineSearch} foodTypes={props.foodTypes}/>
-      <Rating refineSearch={props.refineSearch}/>
+      <Rating
+        starMap={props.starMap}
+        refineSearch={props.refineSearch}
+        highlightStars={props.highlightStars}
+        highlightedStars={props.highlightedStars}
+        dimStars={props.dimStars}
+        selectStars={props.selectStars}/>
       <PaymentOptions refineSearch={props.refineSearch} toggleBackground={props.toggleBackground}/>
     </FilterContainer>
   )

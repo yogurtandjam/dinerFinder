@@ -32,7 +32,9 @@ const Rating = styled.div`
   display:flex;
   flex-direction: row;
 `
-const NumStars = styled.text`
+const NumStars = styled.p`
+  margin: 0;
+  font-size: 17px;
   margin-right: 5px;
 `
 
@@ -50,11 +52,12 @@ const Name = styled.h3`
 const Result = props => {
   const starRow = [];
   let starCount = props.restaurant['stars_count'];
-  for (let i = 0; i < 5; i++) {
-    let isOn = starCount -= 1;
-    if (isOn === 0 || isOn <= -1) starRow.push(false)
-    else if (isOn > 0) starRow.push(true)
-    else if (isOn > -1) starRow.push('half')
+  for (let i = 1; i <= 5; i++) {
+    if (i <= starCount) starRow.push(true)
+    else if (i - starCount >= 1) starRow.push(false)
+    else if (i - starCount < 1) {
+      starRow.push('half')
+    }
   }
   return (
     <ResultContainer>
